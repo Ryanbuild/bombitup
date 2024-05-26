@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import subprocess
 
-app = Flask(__bombitup__)
+app = Flask(__name__)
 
 @app.route('/send_sms', methods=['POST'])
 def send_sms():
@@ -9,8 +9,8 @@ def send_sms():
     count = request.json.get('count')
 
     try:
-        # Adjust the command according to the actual script and arguments used in BOMBitUP
-        command = ["python", "bombitup.py", "-m", target_number, "-s", str(count)]
+        # Adjust the command according to the actual script and arguments used in your Flask app
+        command = ["python", "app.py"]
         subprocess.run(command, check=True)
         return jsonify({"status": "success", "message": f"Sent {count} messages to {target_number}"}), 200
     except subprocess.CalledProcessError as e:
