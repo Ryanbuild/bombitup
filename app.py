@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import subprocess
 
-app = Flask(__name__)
+app = Flask(__bombitup__)
 
 @app.route('/send_sms', methods=['POST'])
 def send_sms():
